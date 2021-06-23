@@ -3,7 +3,7 @@ const express = require('express')
 
 const app = express();
 
-app.get('/api/v1/plans', (req, res) => {
+app.get('/api/v1/investments', (req, res) => {
   res.status(200).json({
     status: 'success',
     message: 'welcome'
@@ -11,7 +11,4 @@ app.get('/api/v1/plans', (req, res) => {
 })
 
 
-const port = 9005
-app.listen(port, () => {
-  console.log(`app running on port ${port}...`);
-});
+module.exports = app;
