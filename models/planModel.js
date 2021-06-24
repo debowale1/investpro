@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose;
+// const {Schema} = mongoose;
 
-const planSchema = new Schema({
+const planSchema = new mongoose.Schema({
   packageName: {
     type: String,
-    enum: ['Monthly', 'Quarterly', 'Biannually', 'Yearly'],
+    enum: ['Monthly', 'Quarterly', 'Biannually', 'Yearly', 'Test'],
     required: [true, 'Plan must have a package name'],
   },
   description:{
