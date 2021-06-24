@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const planRouter = require('./routes/planRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 
@@ -10,16 +11,10 @@ if(process.env.NODE_ENV === 'development'){
   app.use(morgan('dev'));
 }
 
-// app.get('/api/v1/investments', (req, res) => {
-//   res.status(200).json({
-//     status: 'success',
-//     message: 'welcome'
-//   })
-// })
-
 
 //MOUNTING ROUTES
 app.use('/api/v1/plans', planRouter);
+app.use('/api/v1/users', userRouter);
 
 
 module.exports = app;
