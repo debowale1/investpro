@@ -25,3 +25,23 @@ exports.signup = async(req, res, next) => {
     }
   })
 }
+
+exports.login = async(req, res, next) => {
+  //check if email and password are provided
+  const { email, password } = req.body;
+  if(!email || !password) return next(res.status(400).json({status: 'error', message: 'Please provide email and password'}))
+  //check if a user exists for that email and the pasword is correct
+  const user = await User.findOne({email}).select('+password');
+  if(!user || !(await user.comparePassword(password, user.password))) {
+    return next(res.status(404).json({ status: 'error', message: 'email or password is not correct'}))
+  }
+  //sign token
+  const token = jwt.sign({id: user._id}, JWT_SECRET, {
+    expiresIn: JWT_EXPIRES_IN
+  });
+
+  res.status(200).json({
+    status: 'success',
+    token
+  })
+}
