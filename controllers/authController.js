@@ -43,5 +43,24 @@ exports.login = async(req, res, next) => {
   res.status(200).json({
     status: 'success',
     token
-  })
+  });
+}
+//protect middleware
+exports.protect = async(req, res, next) => {
+  let token;
+
+  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  //decode the token
+  const decoded = jwt.verify(token, JWT_SECRET);
+  //get user belonging to that token
+  const user = await User.findById(decoded.id);
+
+  if(!user) return next(res.status(401).json({ status: 'error', message: 'user belonging to this token no longer exist'}))
+
+  //everything OK
+  req.user = user
+  next();
 }
