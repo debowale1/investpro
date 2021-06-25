@@ -8,7 +8,7 @@ router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 
 router.route('/')
-      .get(authController.protect, userController.getAllUser)
+      .get(authController.protect, authController.grantAccessTo('admin'), userController.getAllUser)
       // .post(userController.createUser)
 // router.route('/:id')
 //       .get(userController.getUser)

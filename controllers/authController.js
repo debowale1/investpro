@@ -64,3 +64,12 @@ exports.protect = async(req, res, next) => {
   req.user = user
   next();
 }
+
+exports.grantAccessTo = (...roles) => {
+  return (req, res, next) => {
+    if(!roles.includes(req.user.role)){
+      return next(res.status(403).json({ status: 'error', message: 'You can not perform this action'}))
+    }
+    next();
+  }
+}
