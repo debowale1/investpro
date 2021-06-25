@@ -73,3 +73,28 @@ exports.grantAccessTo = (...roles) => {
     next();
   }
 }
+
+exports.updateMyPassword = async (req, res, next) => {
+
+  const { passwordCurrent, password, passwordConfirm } = req.body;
+  const user = await User.findById(req.user.id).select('+password');
+  //check if the current password entered is correct
+  if(!(await user.comparePassword(passwordCurrent, user.password))){
+    return next(res.status(401).json({ status: 'error', message: 'the current password is incorrect'}))
+  }
+
+  user.password = password;
+  user.passwordConfirm = passwordConfirm;
+  await user.save();
+
+  //sign token
+  const token = jwt.sign({id: user._id}, JWT_SECRET, {
+    expiresIn: JWT_EXPIRES_IN
+  });
+
+  res.status(200).json({
+    status: 'success',
+    token
+  });
+
+}
