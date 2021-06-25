@@ -10,3 +10,5 @@ exports.getAllUser = async (req, res, next) => {
     }
   })
 }
+
+//creating a new user is handled by the authController
