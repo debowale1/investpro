@@ -1,12 +1,13 @@
 const express = require('express');
 const planController = require('./../controllers/planController');
+const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
 
 
 router.route('/')
-      .get(planController.getAllPlans)
+      .get(authController.protect, authController.grantAccessTo('admin'), planController.getAllPlans)
       .post(planController.createPlan);
       
 router.route('/:id')

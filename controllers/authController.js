@@ -12,6 +12,8 @@ exports.signup = async(req, res, next) => {
   if(userExists) return next(res.status(401).json({status: 'fail', message: 'user already exists'}));
   //create new user
   const newUser = await User.create(req.body);
+
+  
   //sign token
   const token = jwt.sign({id: newUser._id}, JWT_SECRET, {
     expiresIn: JWT_EXPIRES_IN
