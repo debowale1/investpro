@@ -74,12 +74,18 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  active: {
+    type: Boolean,
+    default: true,
+  }
 },{
   timestamps: true,
   toJSON: { virtuals: true },
   toObject: { virtuals: true },
 });
 
+
+//DOCUMENT MIDDLEWARE
 //hash user password before save
 userSchema.pre('save', async function(next){
   if(!this.isModified('password')) return next();
@@ -91,12 +97,18 @@ userSchema.pre('save', async function(next){
   next();
 });
 
-//instance methods
+//QUERY MIDDLEWARE
+userSchema.pre(/^find/, function(next) {
+  this.find({ active: { $ne: false }})
+  next();
+})
+
+//INSTANCE METHODS
 userSchema.methods.comparePassword = async function(enteredPassword, dbPassword){
   return await bcrypt.compare(enteredPassword, dbPassword);
 }
 
-//virtuals
+//VIRTUALS
 userSchema.virtual('fullName').get(function(){
   return `${this.firstName} ${this.lastName}`;
 })
