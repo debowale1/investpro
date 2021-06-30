@@ -96,5 +96,10 @@ userSchema.methods.comparePassword = async function(enteredPassword, dbPassword)
   return await bcrypt.compare(enteredPassword, dbPassword);
 }
 
+//virtuals
+userSchema.virtual('fullName').get(function(){
+  return `${this.firstName} ${this.lastName}`;
+})
+
 const User = mongoose.model('User', userSchema);
 module.exports = User;

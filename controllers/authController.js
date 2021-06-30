@@ -4,6 +4,24 @@ const User = require('./../models/userModel');
 
 const { JWT_SECRET, JWT_EXPIRES_IN } = process.env;
 
+const signToken = id => {
+  return jwt.sign({id}, JWT_SECRET, {
+    expiresIn: JWT_EXPIRES_IN
+  });
+}
+
+const sendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: {
+      user
+    }
+  })
+}
+
 exports.signup = async(req, res, next) => {
 
   //chheck if no user exists with the emai
@@ -13,19 +31,9 @@ exports.signup = async(req, res, next) => {
   //create new user
   const newUser = await User.create(req.body);
 
-  
-  //sign token
-  const token = jwt.sign({id: newUser._id}, JWT_SECRET, {
-    expiresIn: JWT_EXPIRES_IN
-  });
 
-  res.status(201).json({
-    status: 'success',
-    token,
-    data: {
-      user: newUser
-    }
-  })
+  //send token
+  sendToken(newUser, 201, res);
 }
 
 exports.login = async(req, res, next) => {
@@ -37,15 +45,9 @@ exports.login = async(req, res, next) => {
   if(!user || !(await user.comparePassword(password, user.password))) {
     return next(res.status(404).json({ status: 'error', message: 'email or password is not correct'}))
   }
-  //sign token
-  const token = jwt.sign({id: user._id}, JWT_SECRET, {
-    expiresIn: JWT_EXPIRES_IN
-  });
-
-  res.status(200).json({
-    status: 'success',
-    token
-  });
+  
+  //send token
+  sendToken(user, 200, res);
 }
 //protect middleware
 exports.protect = async(req, res, next) => {
@@ -89,14 +91,6 @@ exports.updateMyPassword = async (req, res, next) => {
   user.passwordConfirm = passwordConfirm;
   await user.save();
 
-  //sign token
-  const token = jwt.sign({id: user._id}, JWT_SECRET, {
-    expiresIn: JWT_EXPIRES_IN
-  });
-
-  res.status(200).json({
-    status: 'success',
-    token
-  });
-
+  //send token
+  sendToken(user, 200, res);
 }
