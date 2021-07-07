@@ -7,12 +7,26 @@ const router = express.Router();
 
 
 router.route('/')
-      .get(authController.protect, authController.grantAccessTo('admin'), planController.getAllPlans)
-      .post(planController.createPlan);
+      .get(
+            planController.getAllPlans
+      )
+      .post(
+            authController.protect, 
+            authController.grantAccessTo('admin'),
+            planController.createPlan
+      );
       
 router.route('/:id')
       .get(planController.getPlan)
-      .patch(planController.updatePlan)
-      .delete(planController.deletePlan);
+      .patch(
+            authController.protect, 
+            authController.grantAccessTo('admin'),
+            planController.updatePlan
+      )
+      .delete(
+            authController.protect, 
+            authController.grantAccessTo('admin'),
+            planController.deletePlan
+      );
 
 module.exports = router;

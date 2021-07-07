@@ -1,5 +1,7 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const catchAsync = require('../utils/catchAsync');
 const User = require('./../models/userModel');
+
 
 
 const { JWT_SECRET, JWT_EXPIRES_IN } = process.env;
@@ -78,7 +80,7 @@ exports.grantAccessTo = (...roles) => {
   }
 }
 
-exports.updateMyPassword = async (req, res, next) => {
+exports.updateMyPassword = catchAsync(async (req, res, next) => {
 
   const { passwordCurrent, password, passwordConfirm } = req.body;
   const user = await User.findById(req.user.id).select('+password');
@@ -93,4 +95,4 @@ exports.updateMyPassword = async (req, res, next) => {
 
   //send token
   sendToken(user, 200, res);
-}
+})
