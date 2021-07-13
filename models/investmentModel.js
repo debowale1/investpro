@@ -14,12 +14,18 @@ const investmentSchema = new Schema({
   startDate: {
     type: Date,
     required: [true, 'An investment must have a start date'],
+    default: Date.now()
   },
   currentDate: {
     type: Date,
     default: Date.now()
   },
-  endDate: Date,
+  endDate: {
+    type: Date,
+    default: function() {
+      return new Date(this.startDate.getTime() + (this.startDate * 60 * 60 * 60 * 24 * 91));
+    }
+  },
   periodsRemaining: Date,
   status: {
     type: String,
