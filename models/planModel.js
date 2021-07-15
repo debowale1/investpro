@@ -22,6 +22,13 @@ const planSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
+//virtual populates
+planSchema.virtual('investments', {
+  ref: 'Investment',
+  localField: '_id',
+  foreignField: 'plan',
+});
+
 
 const Plan = mongoose.model('Plan', planSchema);
 module.exports = Plan;

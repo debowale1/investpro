@@ -1,10 +1,16 @@
 const express = require('express');
 const planController = require('./../controllers/planController');
 const authController = require('./../controllers/authController');
+const investmentRouter = require('./../routes/investmentRoutes');
 
 const router = express.Router();
 
+//Nested routes
+// POST /899wbhfj/investments
+// GET /899wbhfj/investments
+// GET /899wbhfj/investments/hsbdajbah9936
 
+router.use('/:planId/investments', investmentRouter);
 
 router.route('/')
       .get(

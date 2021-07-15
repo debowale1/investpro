@@ -47,7 +47,7 @@ exports.getAllPlans = async(req, res, next) => {
 exports.getPlan = async (req, res, next) => {
   const { id } = req.params;
 
-  const plan = await Plan.findById(id);
+  const plan = await Plan.findById(id).populate('investments');
 
   if(!plan) return next(res.status(404).json({ status: 'error', message: 'No plan with this ID'}));
   res.status(200).json({

@@ -58,10 +58,7 @@ investmentSchema.pre(/^find/, function(next){
   this.populate({
     path: 'user',
     select: 'firstName lastName'
-  }).populate({
-    path: 'plan', 
-    select: 'packageName percentageROI'
-  });
+  })
   next();
 });
 
