@@ -1,4 +1,5 @@
 const User = require('./../models/userModel');
+const { getAll, updateOne, deleteOne, getOne } = require('./factoryHandler');
 
 const filterObj = (obj, ...fields ) => {
   const newObj = {};
@@ -8,21 +9,13 @@ const filterObj = (obj, ...fields ) => {
   return newObj;
 }
 
-exports.getAllUser = async (req, res, next) => {
-  const users = await User.find();
-  res.status(200).json({
-    status: 'success',
-    results: users.length,
-    data: {
-      users
-    }
-  })
-}
+exports.getAllUser = getAll(User);
+//admin update user
+exports.updateUser = updateOne(User);
+//admin delete user
+exports.deleteUser = deleteOne(User);
 //admin get user
-exports.getUser = async (req, res, next) => {
-  req.params.id = req.params.id || req.user.id;
-  next();
-}
+exports.getUser = getOne(User);
 
 //creating a new user is handled by the authController
 exports.createUser = (req, res, next) => {
@@ -31,42 +24,6 @@ exports.createUser = (req, res, next) => {
     message: 'Please use the /signup route to create a user'
   })
 }
-
-//admin update user
-exports.updateUser = async (req, res, next) => {
-  const { id } = req.params;
-
-  const updatedUser = await User.findByIdAndUpdate(id, req.body, {
-    new: true,
-    runValidators: true
-  })
-
-  if(!updatedUser) return next(res.status(404).json({ status: 'error', message: 'user not found'}));
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      user: updatedUser
-    }
-  })
-}
-
-//admin delete user
-exports.deleteUser = async (req, res, next) => {
-  const { id } = req.params;
-
-  const deletedUser = await User.findByIdAndDelete(id);
-
-  if(!deletedUser) return next(res.status(404).json({ status: 'error', message: 'user not found'}));
-
-  res.status(204).json({
-    status: 'success',
-    data: {
-      user: null
-    }
-  })
-}
-
 
 
 //put the id of the current user in req.params
@@ -94,18 +51,6 @@ exports.updateMe = async (req, res, next) => {
       user: updatedUser
     }
   })
-}
-
-
-//get current user details
-exports.getMyDetails = async (req, res, next) => {
-  const user = await User.findById(req.user.id);
-  res.status(200).json({
-    status: 'success',
-    data: {
-      user: user
-    }
-  });
 }
 
 //current user deactivate account

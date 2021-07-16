@@ -120,5 +120,8 @@ userSchema.virtual('fullName').get(function(){
   return `${this.firstName} ${this.lastName}`;
 })
 
+//Indexes
+userSchema.index({ role: 1 })
+
 const User = mongoose.model('User', userSchema);
 module.exports = User;
