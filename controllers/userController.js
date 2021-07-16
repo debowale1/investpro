@@ -20,14 +20,8 @@ exports.getAllUser = async (req, res, next) => {
 }
 //admin get user
 exports.getUser = async (req, res, next) => {
-  const user = await User.findById(req.params.id).populate('investments');
-  console.log(user);
-  res.status(200).json({
-    status: 'success',
-    data: {
-      user: user
-    }
-  });
+  req.params.id = req.params.id || req.user.id;
+  next();
 }
 
 //creating a new user is handled by the authController
@@ -100,6 +94,18 @@ exports.updateMe = async (req, res, next) => {
       user: updatedUser
     }
   })
+}
+
+
+//get current user details
+exports.getMyDetails = async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: user
+    }
+  });
 }
 
 //current user deactivate account

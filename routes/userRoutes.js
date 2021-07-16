@@ -20,6 +20,7 @@ router.use('/:userId/investments', InvestmentRouter);
 router.patch('/updateMyPassword', authController.updateMyPassword)
 router.patch('/updateMe', userController.updateMe)
 
+router.get('/myDetails', userController.getMyDetails, userController.getUser);
 //delete current user
 router.delete('/deleteMe', userController.deleteMe)
 

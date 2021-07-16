@@ -3,13 +3,11 @@ const catchAsync = require('./../utils/catchAsync');
 
 exports.getAllInvestments = catchAsync (async (req, res, next) => {
   let filter = {};
-  if (req.params.planId) {
-    filter.plan = req.params.planId;
-  }
-  if (req.params.userId) {
-    filter.user = req.params.userId;
-  }
+  if (req.params.planId) filter.plan = req.params.planId;
+  if (req.params.userId) filter.user = req.params.userId;
+
   const investments = await Investment.find(filter);
+  
   if(!investments) return next(res.status(404).json({message: 'No investments found'}));
 
   res.status(200).json({
