@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require('./../controllers/userController');
 const authController = require('./../controllers/authController');
+const InvestmentRouter = require('./investmentRoutes');
 
 const router = express.Router();
 
@@ -13,6 +14,8 @@ router.post('/login', authController.login);
 
 //only logged in user can access these routes
 router.use(authController.protect);
+
+router.use('/:userId/investments', InvestmentRouter);
 
 router.patch('/updateMyPassword', authController.updateMyPassword)
 router.patch('/updateMe', userController.updateMe)

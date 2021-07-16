@@ -103,6 +103,13 @@ userSchema.pre(/^find/, function(next) {
   next();
 })
 
+//virtual populate
+userSchema.virtual('investments', {
+  ref: 'Investment',
+  localField: '_id',
+  foreignField: 'user'
+})
+
 //INSTANCE METHODS
 userSchema.methods.comparePassword = async function(enteredPassword, dbPassword){
   return await bcrypt.compare(enteredPassword, dbPassword);

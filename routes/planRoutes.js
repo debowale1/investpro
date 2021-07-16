@@ -1,7 +1,7 @@
 const express = require('express');
 const planController = require('./../controllers/planController');
 const authController = require('./../controllers/authController');
-const investmentRouter = require('./../routes/investmentRoutes');
+const investmentRouter = require('./investmentRoutes');
 
 const router = express.Router();
 
