@@ -49,6 +49,10 @@ const investmentSchema = new Schema({
   toObject: { virtuals: true }
 });
 //virtual methods
+investmentSchema.virtual('totalMoney').get(function() {
+  return this.amountInvested + this.expectedROI;
+});
+
 investmentSchema.virtual('daysRemaining').get(function() {
   return (this.endDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24);
 });

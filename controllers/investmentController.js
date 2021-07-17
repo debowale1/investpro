@@ -1,4 +1,6 @@
+const { request } = require('express');
 const Investment = require('../models/investmentModel');
+const Plan = require('../models/planModel');
 const catchAsync = require('./../utils/catchAsync');
 const { getOne, updateOne, deleteOne } = require('./factoryHandler');
 
@@ -8,6 +10,7 @@ exports.getAllInvestments = catchAsync (async (req, res, next) => {
   if (req.params.userId) filter.user = req.params.userId;
 
   const investments = await Investment.find(filter);
+
   
   if(!investments) return next(res.status(404).json({message: 'No investments found'}));
 
@@ -27,8 +30,17 @@ exports.setPlanAndUserIds = (req, res, next) => {
 }
 
 exports.createInvestment = catchAsync (async (req, res, next) => {
+
+  //get plan 
+  const plan = await Plan.findById(req.body.plan);
+  if(!plan) return next(res.status(404).json({message: 'Plan not found'}));
+
+  const requestBody = {  
+    ...req.body,
+    expectedROI: (plan.percentageROI / 100) * req.body.amountInvested,
+  }
   
-  const investment = await Investment.create(req.body);
+  const investment = await Investment.create(requestBody);
   if(!investment) return next(res.status(400).json({message: 'Investment not created'}));
   res.status(200).json({
     status: 'success',
