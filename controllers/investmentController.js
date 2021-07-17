@@ -50,6 +50,21 @@ exports.createInvestment = catchAsync (async (req, res, next) => {
   });
 });
 
+//get current user investments
+exports.getMyInvestments = catchAsync (async (req, res, next) => {
+  const filter = { user: req.user.id };
+  const investments = await Investment.find(filter);
+  if(!investments) return next(res.status(404).json({message: 'No investments found'}));
+  res.status(200).json({
+    status: 'success',
+    results: investments.length,
+    data: {
+        data: investments,
+    }
+  })
+})
+
+
 exports.getInvestment = getOne(Investment);
 exports.updateInvestment = updateOne(Investment);
 exports.deleteInvestment = deleteOne(Investment);
