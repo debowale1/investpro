@@ -19,7 +19,8 @@ const investmentSchema = new Schema({
   expectedROI: Number,
   modeOfPayment: {
     type: String,
-    enum: ['Transfer', 'Web Payment']
+    enum: ['Transfer', 'Web Payment'],
+    default: 'Transfer',
   },
   startDate: {
     type: Date,
@@ -35,7 +36,7 @@ const investmentSchema = new Schema({
   periodsRemaining: {
     type: Number,
     default: function() {
-      return (this.endDate.getTime() - Date.now() ); // in milliseconds
+      return (this.endDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24);
     }
   },
   status: {
