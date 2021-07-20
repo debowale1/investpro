@@ -1,0 +1,365 @@
+extends base
+
+block content
+  // Banner Section
+  .banner-section
+    .main-slider-carousel.owl-carousel.owl-theme
+      .slide(data-bg-image='images/main-slider/intro-1.jpg')
+        .auto-container.w-100
+          .row.clearfix
+            // Content Column
+            .content-column.col-lg-7.col-md-12.col-sm-12
+              .inner-column
+                .title consulte company
+                h1
+                  | Clever 
+                  span Investing
+                  |  Make Your Money Grow
+                .text
+                  | Capitalise on low hanging fruit to identify a ballpark 
+                  br
+                  |  value added activity to beta test. Override the digital divide 
+                  br
+                  |  with additional base clickthroughs.
+                .btn-box
+                  a.theme-btn.btn-style-one(href='about.html')
+                    span.txt Work With Us
+      .slide(data-bg-image='images/main-slider/intro-1.jpg')
+        .auto-container.w-100
+          .row.clearfix
+            // Content Column
+            .content-column.col-lg-7.col-md-12.col-sm-12
+              .inner-column
+                .title consulte company
+                h1
+                  | Clever 
+                  span Investing
+                  |  Make Your Money Grow
+                .text
+                  | Capitalise on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional base clickthroughs.
+                .btn-box
+                  a.theme-btn.btn-style-one(href='about.html')
+                    span.txt Work With Us
+      .slide(data-bg-image='images/main-slider/intro-1.jpg')
+        .auto-container.w-100
+          .row.clearfix
+            // Content Column
+            .content-column.col-lg-7.col-md-12.col-sm-12
+              .inner-column
+                .title consulte company
+                h1
+                  | Clever 
+                  span Investing
+                  |  Make Your Money Grow
+                .text
+                  | Capitalise on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional base clickthroughs.
+                .btn-box
+                  a.theme-btn.btn-style-one(href='about.html')
+                    span.txt Work With Us
+  // End Banner Section
+  // CTA Section Start
+  .cta-section(data-bg-image='images/background/cta-bg.jpg')
+    .auto-container
+      .row.align-items-center
+        .col-lg-7
+          // CTA Content Start
+          .cta-content
+            h3.title
+              | Book an appoitment quickly? 
+              span.text-bold Call us now!
+            p We prodive a dedicated support 24/7 for any your question
+          // CTA Content End
+        .col-lg-5
+          // CTA Phone Number Start
+          .cta-phone.text-lg-end.text-strat
+            h2.title +0962-58-58-258
+          // CTA Phone Number Start
+  // CTA Section End
+  // About Section
+  .about-section
+    .auto-container
+      .inner-container
+        .row.align-items-center.clearfix
+          // Image Column
+          .image-column.col-lg-6
+            .about-image
+              .about-inner-image
+                img(src='images/about/home-about.png' alt='about')
+          // Content Column
+          .content-column.col-lg-6.col-md-12.col-sm-12.mb-0
+            .about-column
+              .sec-title
+                .title about consulte
+                h2
+                  | Leading 
+                  span Financial
+                  br
+                  span Consulting
+                  |  Company
+              .text
+                p
+                  | Consulte is located in the former rectory of St. Peter&rsquo;s Episcopal Church. Over our 14 year history, we have treated patients from over 114 different countries in the world. In 2010, we imposed geographical restrictions for the first time. Existing patients were not affected by this change, but new patients are now
+                p
+                  | We have compiled an extensive list of other area clinics and health resources, so that when someone calls from outside of our geographical area.
+              .signature
+                | Daniel 
+                span Daniel Jr
+  // End About Section
+  // Services Section
+  .services-section
+    .auto-container
+      .sec-title
+        .title our plans
+        h2
+          span Best Investment
+          |  Plans for Your Future
+      .inner-container
+        .row.g-0
+          each plan in plans
+            // Service Block
+            .service-block.col-lg-3.col-md-6.col-sm-12
+              .inner-box
+                .icon-box
+                  span.icon.ti-money
+                h5
+                  a(href=`/plans/${plan.slug}`)= plan.packageName
+                .text= plan.description 
+                .text= `%ROI: ${plan.percentageROI}` 
+                a.read-more(href=`/plans/${plan.slug}`)
+                  | More 
+                  span.ti-angle-right
+  // End Services Section
+  // Testimonial Section
+  .testimonial-section
+    .auto-container
+      // Sec Title
+      .sec-title
+        .title testimonials
+        h2
+          span +2,500 Clients 
+          | Love Us
+      .testimonial-carousel.owl-carousel.owl-theme
+        // Testimonial Block
+        .testimonial-block
+          .inner-box
+            .quote.icofont-quote-right
+            .author
+              | Ryan Betthalyn 
+              span / Director at Chobham Manor
+            .text
+              | Sed elit quam, iaculis sed semper sit amet udin vitae nibh. Rubino at magna akal semperFusce commodo molestie luctus.Lorem ipsum Dolor tusima olatiup.
+        // Testimonial Block
+        .testimonial-block
+          .inner-box
+            .quote.icofont-quote-right
+            .author
+              | Bobs Hanley 
+              span / Director at Spotify
+            .text
+              | Sed elit quam, iaculis sed semper sit amet udin vitae nibh. Rubino at magna akal semperFusce commodo molestie luctus.Lorem ipsum Dolor tusima olatiup.
+        // Testimonial Block
+        .testimonial-block
+          .inner-box
+            .quote.icofont-quote-right
+            .author
+              | Ryan Betthalyn 
+              span / Director at Chobham Manor
+            .text
+              | Sed elit quam, iaculis sed semper sit amet udin vitae nibh. Rubino at magna akal semperFusce commodo molestie luctus.Lorem ipsum Dolor tusima olatiup.
+        // Testimonial Block
+        .testimonial-block
+          .inner-box
+            .quote.icofont-quote-right
+            .author
+              | Bobs Hanley 
+              span / Director at Spotify
+            .text
+              | Sed elit quam, iaculis sed semper sit amet udin vitae nibh. Rubino at magna akal semperFusce commodo molestie luctus.Lorem ipsum Dolor tusima olatiup.
+  // End Testimonial Section
+  // Sponsors Section
+  .sponsors-section
+    .auto-container
+      .carousel-outer
+        // Sponsors Slider
+        ul.sponsors-carousel.owl-carousel.owl-theme
+          li
+            .image-box
+              a(href='#')
+                img(src='images/clients/1.png' alt='')
+          li
+            .image-box
+              a(href='#')
+                img(src='images/clients/2.png' alt='')
+          li
+            .image-box
+              a(href='#')
+                img(src='images/clients/3.png' alt='')
+          li
+            .image-box
+              a(href='#')
+                img(src='images/clients/4.png' alt='')
+          li
+            .image-box
+              a(href='#')
+                img(src='images/clients/5.png' alt='')
+          li
+            .image-box
+              a(href='#')
+                img(src='images/clients/1.png' alt='')
+          li
+            .image-box
+              a(href='#')
+                img(src='images/clients/2.png' alt='')
+          li
+            .image-box
+              a(href='#')
+                img(src='images/clients/3.png' alt='')
+  // End Sponsors Section
+  // Reputation Section Two
+  .reputation-section-two.style-two
+    .auto-container
+      .row.clearfix
+        // Form Column
+        .form-column.col-lg-5.col-md-12.col-sm-12
+          .inner-column
+            .form-boxed
+              h5 free consulation
+              .consult-form
+                form(method='post' action='donate.html')
+                  // Form Group
+                  .form-group
+                    label full name
+                    input(type='text' name='name' value='' placeholder='Jason Staham' required='')
+                  // Form Group
+                  .form-group
+                    label phone number
+                    input(type='text' name='phone' value='' placeholder='Enter your phone number' required='')
+                  // Form Group
+                  .form-group
+                    label topics
+                    select.custom-select-box
+                      option Choose topic
+                      option Topic 01
+                      option Topic 02
+                      option Topic 03
+                      option Topic 04
+                  // Form Group
+                  .form-group
+                    label message
+                    textarea(name='message' placeholder='Write your message here')
+                  .form-group
+                    button.theme-btn.btn-style-one(type='submit' name='submit-form')
+                      span.txt send your messenger
+        // Content Column
+        .content-column.col-lg-7.col-md-12.col-sm-12
+          .inner-column
+            .sec-title
+              .title why choose us
+              h2
+                span Your Successful 
+                | Is
+                br
+                |  Our Reputation
+            .blocks-outer
+              // Reputation Block
+              .reputation-block
+                .inner-box
+                  h5 Strong Martket Analysis
+                  .text
+                    | Tasks, docs, and files integrate with Arado&rsquo;s chat to close the 
+                    br
+                    |  gaps between feedback and action.
+              // Reputation Block
+              .reputation-block
+                .inner-box
+                  h5 Experience &amp; Percision
+                  .text
+                    | Create multiple discussions to keep all relevant conversations 
+                    br
+                    |  together, all in one place with Arado
+              // Reputation Block
+              .reputation-block
+                .inner-box
+                  h5 Experts About Business
+                  .text
+                    | Create multiple discussions to keep all relevant conversations 
+                    br
+                    |  together, all in one place with Arado
+  // End Reputation Section
+  // Experts Section
+  .experts-section
+    .auto-container
+      // Sec Title
+      .sec-title
+        .clearfix
+          .pull-left
+            .title our services
+            h2
+              | We Are 
+              span Friendly &amp; Profressional
+          .pull-right
+            a.experts(href='service.html')
+              | all experts 
+              span.arrow.ti-angle-right
+      .row.clearfix
+        // Team Block
+        .team-block.col-lg-4.col-md-6.col-sm-6.col-12
+          .inner-box.wow.fadeInLeft(data-wow-delay='0ms' data-wow-duration='1500ms')
+            .image
+              a(href='#')
+                img(src='images/resource/team-1.jpg' alt='')
+              // Social Box
+              ul.social-box
+                li
+                  a.icofont-twitter(href='https://twitter.com/')
+                li
+                  a.icofont-facebook(href='http://facebook.com/')
+                li
+                  a.icofont-instagram(href='https://www.instagram.com/')
+                li
+                  a.icofont-linkedin(href='https://www.linkedin.com/')
+            .lower-box.mt-0
+              h4
+                a(href='#') Edward Eric Jr
+              .designation Business &amp; Financial Expert
+        // Team Block
+        .team-block.col-lg-4.col-md-6.col-sm-6.col-12
+          .inner-box.wow.fadeInUp(data-wow-delay='0ms' data-wow-duration='1500ms')
+            .image
+              a(href='#')
+                img(src='images/resource/team-2.jpg' alt='')
+              // Social Box
+              ul.social-box
+                li
+                  a.icofont-twitter(href='https://twitter.com/')
+                li
+                  a.icofont-facebook(href='http://facebook.com/')
+                li
+                  a.icofont-instagram(href='https://www.instagram.com/')
+                li
+                  a.icofont-linkedin(href='https://www.linkedin.com/')
+            .lower-box.mt-0
+              h4
+                a(href='#') Tom Holland
+              .designation Logistic &amp; Communication Expert
+        // Team Block
+        .team-block.col-lg-4.col-md-6.col-sm-6.col-12
+          .inner-box.wow.fadeInRight(data-wow-delay='0ms' data-wow-duration='1500ms')
+            .image
+              a(href='#')
+                img(src='images/resource/team-3.jpg' alt='')
+              // Social Box
+              ul.social-box
+                li
+                  a.icofont-twitter(href='https://twitter.com/')
+                li
+                  a.icofont-facebook(href='http://facebook.com/')
+                li
+                  a.icofont-instagram(href='https://www.instagram.com/')
+                li
+                  a.icofont-linkedin(href='https://www.linkedin.com/')
+            .lower-box.mt-0
+              h4
+                a(href='#') Laura Erakovic
+              .designation Consumer Market Expert
+  // End Experts Section

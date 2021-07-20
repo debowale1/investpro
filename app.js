@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const planRouter = require('./routes/planRoutes');
 const userRouter = require('./routes/userRoutes');
 const investmentRouter = require('./routes/investmentRoutes');
+const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
 
@@ -26,18 +27,10 @@ if(process.env.NODE_ENV === 'development'){
 
 
 //MOUNTING ROUTES
-app.get('/', (req, res) => { 
-  res.status(200).render('base', { plan: 'Quarterly', user: 'Susan' });
-});
-app.get('/overview', (req, res) => { 
-  res.status(200).render('overview', { title: 'All Plans' });
-});
-app.get('/plan', (req, res) => { 
-  res.status(200).render('plan', { title: 'Yearly Plan' });
-});
 app.use('/api/v1/plans', planRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/investments', investmentRouter);
+app.use('/', viewRouter);
 
 
 module.exports = app;

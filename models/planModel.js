@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 // const {Schema} = mongoose;
 
 const planSchema = new mongoose.Schema({
@@ -16,10 +17,16 @@ const planSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'A plan must have a ROI percentage']
   },
+  slug: String,
 },{
   timestamps: true,
   toJSON: { virtuals: true },
   toObject: { virtuals: true }
+});
+
+planSchema.pre('save', function(next) {
+  this.slug = slugify(this.packageName, {lower: true})
+  next();
 });
 
 //virtual populates
