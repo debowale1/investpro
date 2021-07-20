@@ -29,6 +29,12 @@ if(process.env.NODE_ENV === 'development'){
 app.get('/', (req, res) => { 
   res.status(200).render('base', { plan: 'Quarterly', user: 'Susan' });
 });
+app.get('/overview', (req, res) => { 
+  res.status(200).render('overview', { title: 'All Plans' });
+});
+app.get('/plan', (req, res) => { 
+  res.status(200).render('plan', { title: 'Yearly Plan' });
+});
 app.use('/api/v1/plans', planRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/investments', investmentRouter);

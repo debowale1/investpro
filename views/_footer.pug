@@ -1,0 +1,106 @@
+footer.main-footer
+  .auto-container
+    // Widgets Section
+    .widgets-section
+      .row.clearfix
+        // Column
+        .big-column.col-lg-6.col-md-12.col-sm-6.col-12
+          .row.clearfix
+            // Footer Column
+            .footer-column.col-lg-6.col-md-6.col-sm-12
+              .footer-widget.logo-widget
+                .logo
+                  a(href='index.html')
+                    img(src='images/logo.png' alt='')
+                .call
+                  | Call us directly
+                  a.phone(href='tel:+1-212-226-3126') +1 212-226-3126
+                  a.email(href='mailto:hello@consulte.co') hello@consulte.co
+            // Footer Column
+            .footer-column.col-lg-6.col-md-6.col-sm-12
+              .footer-widget.links-widget
+                h5 Company
+                ul.list-link
+                  li
+                    a(href='') About Us
+                  li
+                    a(href='') Team
+                  li
+                    a(href='') Careers
+                  li
+                    a(href='') Investors
+                  li
+                    a(href='') Contact Us
+                  li
+                    a(href='') Offices
+        // Column
+        .big-column.col-lg-6.col-md-12.col-sm-6.col-12
+          .row.clearfix
+            // Footer Column
+            .footer-column.col-lg-6.col-md-6.col-sm-12
+              .footer-widget.links-widget
+                h5 Quick Links
+                ul.list-link
+                  li
+                    a(href='') FAQS
+                  li
+                    a(href='') Support
+                  li
+                    a(href='') Sitemap
+                  li
+                    a(href='') Community
+            // Footer Column
+            .footer-column.col-lg-6.col-md-6.col-sm-12
+              .footer-widget.newsletter-widget
+                h5 Our Newsletter
+                .text
+                  | Subscribe to our newsletter and we will inform you about latest updates and offers
+                // Newsletter Form
+                .newsletter-form
+                  form(method='post' action='contact.html')
+                    .form-group
+                      input(type='email' name='email' value='' placeholder='Email Address...' required='')
+                      button.theme-btn.icofont-arrow-right(type='submit')
+    // Footer Bottom
+    .footer-bottom
+      .auto-container
+        .bottom-inner
+          .row.clearfix
+            .col-lg-8.col-md-12.col-sm-12
+              .copyright
+                | Copyright &copy;
+                script(async='' src='https://www.google-analytics.com/analytics.js')
+                script.
+                  document.write(new Date().getFullYear());
+                |  All rights reserved | This template is made with 
+                i.icon-heart.text-danger(aria-hidden='true')
+                |  by 
+                a(href='https://hasthemes.com/' target='_blank') HasThemes
+            .col-lg-4.col-md-12.col-sm-12
+              ul.social-nav
+                li
+                  a.icofont-twitter(href='https://twitter.com/')
+                li
+                  a.icofont-facebook(href='http://facebook.com/')
+                li
+                  a.icofont-instagram(href='https://www.instagram.com/')
+                li
+                  a.icofont-rss(href='https://rss.com/')
+                li
+                  a.icofont-play-alt-1(href='https://www.youtube.com/')
+// End pagewrapper
+// Search Popup
+.search-popup
+  button.close-search.style-two
+    span.icofont-brand-nexus
+  button.close-search
+    span.icofont-arrow-up
+  form(method='post' action='blog.html')
+    .form-group
+      input(type='search' name='search-field' value='' placeholder='Search Here' required='')
+      button(type='submit')
+        i.fa.fa-search
+// End Header Search
+// Scroll To Top
+.scroll-to-top.scroll-to-target(data-target='html')
+  span.fa.fa-arrow-circle-up
