@@ -8,10 +8,18 @@ const planSchema = new mongoose.Schema({
     enum: ['Monthly', 'Quarterly', 'Biannually', 'Yearly', 'Test'],
     required: [true, 'Plan must have a package name'],
   },
+  summary:{
+    type: String,
+    trim: true,
+    required: [true, 'Plan must have a summary'],
+  },
   description:{
     type: String,
     trim: true,
-    required: [true, 'Please provide a brief description']
+  },
+  numOfDays: {
+    type: Number,
+    required: [true, 'Plan must have a number of days'],
   },
   percentageROI: {
     type: Number,

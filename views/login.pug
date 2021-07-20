@@ -1,0 +1,46 @@
+extends base
+
+block content
+  // Reputation Section Two
+  .reputation-section-two.style-two
+    .auto-container
+      .row.clearfix
+        // Form Column
+        .form-column.col-lg-5.col-md-12.col-sm-12
+          .inner-column
+            .form-boxed
+              h5 login
+              .consult-form
+                form(method='post' action='donate.html')
+                  // Form Group
+                  .form-group
+                    label email address
+                    input(type='email' name='email' value='' placeholder='john@example.com' required='')
+                  // Form Group
+                  .form-group
+                    label password
+                    input(type='password' name='password' value='' placeholder='password' required='')
+                  // Form Group
+                  .form-group
+                    button.theme-btn.btn-style-one(type='submit' name='submit-form')
+                      span.txt Sign In
+        // Content Column
+        .content-column.col-lg-7.col-md-12.col-sm-12
+          .inner-column
+            .sec-title
+              .title welcome back
+              h2
+                span Sign in 
+                | to
+                br
+                |  your account
+            .blocks-outer
+              // Reputation Block
+              .reputation-block
+                .inner-box
+                  h5 Strong Martket Analysis
+                  .text
+                    | Tasks, docs, and files integrate with Arado&rsquo;s chat to close the 
+                    br
+                    |  gaps between feedback and action.
+  // End Reputation Section

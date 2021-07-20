@@ -25,7 +25,7 @@ const investmentSchema = new Schema({
   startDate: {
     type: Date,
     required: [true, 'An investment must have a start date'],
-    default: Date.now()
+    default: Date.now().toLocaleString()
   },
   endDate: {
     type: Date,
@@ -55,7 +55,7 @@ investmentSchema.virtual('totalMoney').get(function() {
 });
 
 investmentSchema.virtual('daysRemaining').get(function() {
-  return (this.endDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24);
+  return (this.endDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
 });
 
 //query middleware

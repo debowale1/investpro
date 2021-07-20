@@ -1,4 +1,58 @@
 extends base
 
+mixin detailsList(label, value)
+  .details-list
+    label= label
+    span= value
+
 block content
-  h1 This is the plan page.
+  // Page Title Section
+  .page-title-section
+    .auto-container
+      ul.post-meta
+        li
+          a(href='index.html') Index
+        li Plan
+      h2
+        span Latest
+        |  From Our Plan
+  // End Page Title Section
+  // Start Project Details
+  .project-section.section-padding
+    .auto-container
+      .row
+        // Portfolio Left
+        .col-lg-4.col-md-6.col-12
+          .work-left.work-details
+            .portfolio-main-info
+              h2.title
+                | About the 
+                br
+                |  plan
+              // Start Details List
+              .work-details-list.mt-60
+                +detailsList('Name', plan.packageName)
+                +detailsList('Number Of Days', `${plan.numOfDays} days`)
+                +detailsList('Percentage ROI', `${plan.percentageROI}%`)
+              // End Details List
+              // Start Work Share
+              .work-share.section-padding-top-70
+                h6.heading.heading-h6 SHARE
+        // Work Right
+        .col-lg-7.col-md-6.offset-lg-1.col-12
+          .work-left.work-details.mt-lg-30
+            .work-main-info
+              .work-content
+                h6.title PLAN DESCRIPTION
+                .desc.mt-40
+                  - const description = plan.description.split('\n');
+                  .content.mb-25
+                    p= description[0]
+                  .content.mb-25
+                    p= description[1]
+                  .content.mb-60
+                    p= description[2]
+                  .work-btn
+                    a.theme-btn.btn-style-one(href='#')
+                      span.txt Buy This Plan
+

@@ -122,10 +122,10 @@ block content
                 .icon-box
                   span.icon.ti-money
                 h5
-                  a(href=`/plans/${plan.slug}`)= plan.packageName
-                .text= plan.description 
+                  a(href=`/plan/${plan.slug}`)= plan.packageName
+                .text= plan.summary 
                 .text= `%ROI: ${plan.percentageROI}` 
-                a.read-more(href=`/plans/${plan.slug}`)
+                a.read-more(href=`/plan/${plan.slug}`)
                   | More 
                   span.ti-angle-right
   // End Services Section
