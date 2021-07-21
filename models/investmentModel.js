@@ -25,13 +25,13 @@ const investmentSchema = new Schema({
   startDate: {
     type: Date,
     required: [true, 'An investment must have a start date'],
-    default: Date.now().toLocaleString()
+    default: Date.now()
   },
   endDate: {
     type: Date,
-    default: function() {
-      return new Date(this.startDate.getTime() +  1000 * 60 * 60 * 24 * 91);
-    }
+    // default: function() {
+    //   return new Date(this.startDate.getTime() +  1000 * 60 * 60 * 24 * 91);
+    // }
   },
   periodsRemaining: {
     type: Number,

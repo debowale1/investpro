@@ -11,15 +11,15 @@ block content
             .form-boxed
               h5 login
               .consult-form
-                form(method='post' action='donate.html')
+                form.loginForm(method='post' action='donate.html')
                   // Form Group
                   .form-group
                     label email address
-                    input(type='email' name='email' value='' placeholder='john@example.com' required='')
+                    input(type='email' id='email' name='email' value='' placeholder='john@example.com' required='')
                   // Form Group
                   .form-group
                     label password
-                    input(type='password' name='password' value='' placeholder='password' required='')
+                    input(type='password' id='password' name='password' value='' placeholder='password' required='')
                   // Form Group
                   .form-group
                     button.theme-btn.btn-style-one(type='submit' name='submit-form')

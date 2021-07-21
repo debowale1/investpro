@@ -38,6 +38,7 @@ exports.createInvestment = catchAsync (async (req, res, next) => {
   const requestBody = {  
     ...req.body,
     expectedROI: (plan.percentageROI / 100) * req.body.amountInvested,
+    endDate: new Date(Date.now() + plan.numOfDays * 24 * 60 * 60 * 1000),
   }
   
   const investment = await Investment.create(requestBody);
