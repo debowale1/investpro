@@ -56,9 +56,13 @@ header.main-header
                 li.current
                   a(href='index.html') Home
                 li
-                  a(href='/login') Login
-                li
                   a(href='contact.html') Contact
+                if user
+                  li
+                    a(href='/login') Login
+                else
+                  li
+                    a(href='/signup') Register
         // Outer Box
         .outer-box
           // Search Btn

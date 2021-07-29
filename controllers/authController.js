@@ -1,3 +1,4 @@
+const { promisify } = require('util')
 const jwt = require('jsonwebtoken');
 const catchAsync = require('../utils/catchAsync');
 const User = require('./../models/userModel');
@@ -67,6 +68,8 @@ exports.protect = async(req, res, next) => {
 
   if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
     token = req.headers.authorization.split(' ')[1];
+  }else if(req.cookies.jwt){
+    token = req.cookies.jwt;
   }
 
   //decode the token
@@ -78,6 +81,25 @@ exports.protect = async(req, res, next) => {
 
   //everything OK
   req.user = user
+  next();
+}
+
+
+//only for rendered pages, no errors
+exports.isLoggedIn = async(req, res, next) => {
+
+  if(req.cookies.jwt){  
+    //decode the token
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt, JWT_SECRET);
+    //get user belonging to that token
+    const user = await User.findById(decoded.id);
+
+    if(!user) return next()
+
+    //there is a logged in user
+    res.locals.user = user;
+    return next();
+  }
   next();
 }
 

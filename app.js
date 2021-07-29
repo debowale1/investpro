@@ -1,15 +1,19 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize')
+const xss = require('xss-clean');
+const hpp = require('hpp');
+
 const planRouter = require('./routes/planRoutes');
 const userRouter = require('./routes/userRoutes');
 const investmentRouter = require('./routes/investmentRoutes');
 const viewRouter = require('./routes/viewRoutes');
-
-const cookieParser = require('cookie-parser');
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
 const app = express();
+
 
 
 app.set('view engine', 'pug');
@@ -36,14 +40,18 @@ app.use('/api',limiter);
 
 //body parser
 app.use(express.json({ limit: '50kb' }));
+// cookie parser
 app.use(cookieParser());
+//sanitize NoSQL queries
+app.use(mongoSanitize());
+// sanitize against xss attacks
+app.use(xss());
+
+//http parameter pollution protection
+app.use(hpp());
 
 //serving static files
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-
-
 
 
 //test middleware
@@ -51,8 +59,6 @@ app.use((req, res, next) => {
   console.log(req.cookies);
   next();
 });
-
-
 
 //MOUNTING ROUTES
 app.use('/api/v1/plans', planRouter);

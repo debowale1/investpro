@@ -1,5 +1,8 @@
+import axios from 'axios';
+
 const login = async (email, password) => {
   // alert(`${email} ${password}`);
+
   try {
     const res = await axios({
       method: 'post',
@@ -9,9 +12,14 @@ const login = async (email, password) => {
         password
       }
     })
-    console.log(res)
+    if(res.data.status === 'success'){
+      alert('login success');
+      window.setTimeout(() => {
+        location.assign('/')
+        }, 1000)
+    }
   } catch (error) {
-    console.log(error.response.data)
+    alert(error.response.data)
   }
 }
 document.querySelector('.loginForm').addEventListener('submit', function(e) {
